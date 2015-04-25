@@ -123,7 +123,7 @@ class Utopia(object):
   ## Misc Function ##
 
   def numerize(self, string):
-    if type(string) != type(str):
+    if type(string) != str:
       return 0
     numonly = "".join([x for x in string if x.isdigit()])
     if numonly == "":
@@ -194,33 +194,34 @@ class Utopia(object):
       h2 = h2n.text()
       box = T(".two-column-stats > tbody:nth-child(1)")("td")
       self.sot = {
-          "uto date": h2[h2.find(") ")+2:],
-          "ruler": "Ruler Name Here",
-          "prov": h2[16:h2.find(" (")],
+          "Uto Date": h2[h2.find(") ")+2:],
+          "Ruler": "Ruler Name Here",
+          "Province": h2[16:h2.find(" (")],
           "KD": h2n("a").text(),
-          "pers": "Personality Here",
-          "race": box[0].text,
-          "land": self.numerize(box[4].text),
-          "gold": self.numerize(box[10].text),
+          "Personality": "Personality Here",
+          "Race": box[0].text,
+          "Land": self.numerize(box[4].text),
+          "BE": self.numerize(box[8].text),
+          "Gold": self.numerize(box[10].text),
           "NW": self.numerize(box[18].text),
-          "food": self.numerize(box[12].text),
-          "runes": self.numerize(box[14].text),
-          "peasants": self.numerize(box[6].text),
+          "Food": self.numerize(box[12].text),
+          "Runes": self.numerize(box[14].text),
+          "Peasants": self.numerize(box[6].text),
           "TB": self.numerize(box[16].text),
-          "sols": self.numerize(box[1].text),
-          "off spec": self.numerize(box[3].text),
-          "def spec": self.numerize(box[5].text),
-          "elites": self.numerize(box[7].text),
-          "horses": self.numerize(box[13].text),
-          "prisoners": self.numerize(box[15].text),
-          "off points": self.numerize(box[17].text),
-          "def points": self.numerize(box[19].text),
-          "thieves": self.numerize(box[9].text.strip().split(" ")[0]),
-          "stealth": self.numerize(box[9].text.strip().split(" ")[1]),
-          "wizards": self.numerize(box[11].text.strip().split(" ")[0]),
-          "mana": self.numerize(box[11].text.strip().split(" ")[1])
+          "Sols": self.numerize(box[1].text),
+          "Off Spec": self.numerize(box[3].text),
+          "Def Spec": self.numerize(box[5].text),
+          "Elites": self.numerize(box[7].text),
+          "Horses": self.numerize(box[13].text),
+          "Prisoners": self.numerize(box[15].text),
+          "Off Points": self.numerize(box[17].text),
+          "Def Points": self.numerize(box[19].text),
+          "Thieves": self.numerize(box[9].text.strip().split(" ")[0]),
+          "Stealth": self.numerize(box[9].text.strip().split(" ")[1]),
+          "Wizards": self.numerize(box[11].text.strip().split(" ")[0]),
+          "Mana": self.numerize(box[11].text.strip().split(" ")[1])
       }
-      print "Successfully Updated SoT of "+self.sot['prov']
+      print "Successfully Updated SoT of "+self.sot['Province']
     
   def train(self,ospec=0,dspec=0,elites=0,thieves=0,rate=False,target=False,wage=False,accel=False):
     """Set Military Options:  Rate: NONE, RESERVIST, NORMAL, AGGRESSIVE, EMERGENCY
