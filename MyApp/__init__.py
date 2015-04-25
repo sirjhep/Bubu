@@ -70,8 +70,35 @@ class MyApp:
   
   def load_main(self):
     
+    #maximize the window
     self.root.wm_state('zoomed')
     
+    #load menu
+    self.load_menu()
+    
+    # Frames to hold columns.
+    self.col1 = Frame(self.root, borderwidth=2, pady=5, padx=5, bg="white")
+    self.col1.pack(side=LEFT, fill=Y)
+    self.col2 = Frame(self.root, borderwidth=2, pady=5, padx=5, bg="white")
+    self.col2.pack(side=LEFT, fill=Y)
+    self.col3 = Frame(self.root, borderwidth=2, pady=5, padx=5, bg="white")
+    self.col3.pack(side=LEFT, fill=Y)
+    self.col4 = Frame(self.root, borderwidth=2, pady=5, padx=5, bg="white")
+    self.col4.pack(side=LEFT, fill=Y)
+    
+    #From left to right
+    Label(self.col1, text="Scheduled Task", font=("Consolas", 14, "bold")).pack()
+    Label(self.col2, text="News", font=("Consolas", 14, "bold")).pack()
+    Label(self.col3, text="Build Presets", font=("Consolas", 14, "bold")).pack()
+    Label(self.col4, text="Province Info", font=("Consolas", 14, "bold")).pack()
+    
+    #col4 content
+    self.uto.update_sot();
+    for info in self.uto.sot:
+      Label(self.col4, text=info + ": "+ str(self.uto.sot[info]), font=("Consolas", 11, "bold")).pack()
+    
+  
+  def load_menu(self):
     #Set Up Menu
     self.menu = Menu(self.root)
     
@@ -114,20 +141,14 @@ class MyApp:
     self.menu.add_cascade(label="Windows", menu=self.win_menu)
     self.menu.add_cascade(label="Help", menu=self.help_menu)
     
-    # Frames to hold three columns.
-    self.left = Frame(self.root, borderwidth=2, pady=5, padx=5, bg="white")
-    self.left.pack(side=LEFT, fill=Y)
-    self.right = Frame(self.root)
-    self.right.pack(side=LEFT, fill=Y)
-    
-    Label(self.left, text="Scheduled Task", font=("Consolas", 14, "bold")).pack()
-    
   def logout(self):
     res = self.uto.logout()
     if res:
       self.menu.destroy()
-      self.left.destroy()
-      self.right.destroy()
+      self.col1.destroy()
+      self.col2.destroy()
+      self.col3.destroy()
+      self.col4.destroy()
       self.load_login(self.root)
       self.login_message.config(bg="green", fg="white", text="You have log-out...")
     else:
