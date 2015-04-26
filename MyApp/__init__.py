@@ -1,4 +1,4 @@
-from Tkinter import *
+from Theme import *
 from Utopia import Utopia
 
 class MyApp:

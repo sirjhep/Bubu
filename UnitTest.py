@@ -1,5 +1,6 @@
 from Utopia import Utopia
-
+username = "lariveee" #replace with your username
+password = "odomo0811" #replace with your password
 print "Starting unit test for Utopia Module..."
 print "Testing a non existent account..."
 
@@ -23,11 +24,11 @@ print "pass"
 print "Testing an existing account..."
 
 #place username password here
-uto = Utopia("", "")
+uto = Utopia(username, password)
 
 #place username password here
-assert uto.user == "", "Utopia.user did not match with arg1 for Utopia class"
-assert uto.pwd == "", "Utopia.pwd did not match with arg1 for Utopia class"
+assert uto.user == username, "Utopia.user did not match with arg1 for Utopia class"
+assert uto.pwd == password, "Utopia.pwd did not match with arg1 for Utopia class"
 assert not uto.csrftoken, "Utopia.csrftoken was mutated. should be False by default"
 assert not uto.last_url, "Utopia.last_url was mutated. should be False by default"
 uto.login()
@@ -37,7 +38,8 @@ assert uto.last_url, "Utopia.last_url should have a value by now after logging i
 
 print "Now testing Utopia action..."
 uto.update_sot()
-assert type(uto.sot) == dict, "Utopia.sot shoud be a dictionary"
+assert type(uto.sot) == dict, "Utopia.sot should be a dictionary"
+assert uto.sot["BE"] > 50, "BE is not possible"
 print "SOT"
 for s in uto.sot:
     print s, ": ", uto.sot[s]
